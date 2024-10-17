@@ -11,9 +11,8 @@
 	<body class="bg-gray-100">
 		<div class="container mx-auto py-10">
 			<h1 class="text-4xl font-bold text-center mb-16 mt-2">TGL Signatures</h1>
-
-			<!-- Bruna Signature -->
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+				<!-- Bruna Signature -->
 				<div class="relative bg-white p-6 rounded-md shadow hover:shadow-lg transition group">
 					<div
 						id="BrunaSignature"
@@ -271,9 +270,10 @@
 						</table>
 					</div>
 					<button
+						id="btn-BrunaSignature"
 						class="absolute top-4 right-4 bg-[#32AFBF] text-white px-3 py-2 rounded opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out"
-						onclick="copyHtml('BrunaSignature')">
-						Copy HTML
+						onclick="copyHtml('BrunaSignature', 'btn-BrunaSignature')">
+						Copy
 					</button>
 				</div>
 				<!-- Sol Signature -->
@@ -534,9 +534,10 @@
 						</table>
 					</div>
 					<button
+						id="btn-SolSignature"
 						class="absolute top-4 right-4 bg-[#32AFBF] text-white px-3 py-2 rounded opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out"
-						onclick="copyHtml('SolSignature')">
-						Copy HTML
+						onclick="copyHtml('SolSignature', 'btn-SolSignature')">
+						Copy
 					</button>
 				</div>
 				<!-- Mariana Signature -->
@@ -764,9 +765,10 @@
 						</table>
 					</div>
 					<button
+						id="btn-MarianaSignature"
 						class="absolute top-4 right-4 bg-[#32AFBF] text-white px-3 py-2 rounded opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out"
-						onclick="copyHtml('MarianaSignature')">
-						Copy HTML
+						onclick="copyHtml('MarianaSignature', 'btn-MarianaSignature')">
+						Copy
 					</button>
 				</div>
 				<!-- Mercedes Signature -->
@@ -994,18 +996,17 @@
 						</table>
 					</div>
 					<button
+						id="btn-MercedesSignature"
 						class="absolute top-4 right-4 bg-[#32AFBF] text-white px-3 py-2 rounded opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out"
-						onclick="copyHtml('MercedesSignature')">
-						Copy HTML
+						onclick="copyHtml('MercedesSignature', 'btn-MercedesSignature')">
+						Copy
 					</button>
 				</div>
-
-				<!-- Agregar más firmas duplicando los bloques anteriores -->
 			</div>
 		</div>
 
 		<script>
-			function copyHtml(signatureId) {
+			function copyHtml(signatureId, buttonId) {
 				// Obtener el HTML de la firma
 				var signatureHtml = document.getElementById(signatureId).innerHTML;
 
@@ -1024,7 +1025,17 @@
 				// Eliminar el área de texto temporal
 				document.body.removeChild(tempTextArea);
 
-				alert("HTML Copied!");
+				// Cambiar el texto del botón temporalmente
+				var button = document.getElementById(buttonId);
+				var originalText = button.innerText;
+				button.innerText = "Copied!";
+				button.classList.add("bg-green-500"); // Cambiar color a verde como feedback
+
+				// Volver al estado original después de 2 segundos
+				setTimeout(function () {
+					button.innerText = originalText;
+					button.classList.remove("bg-green-500");
+				}, 2000);
 			}
 		</script>
 	</body>
